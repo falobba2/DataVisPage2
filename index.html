@@ -24,13 +24,13 @@ var pack = d3.pack()
     .padding(1.5);
 
 d3.csv("flare.csv", function(d) {
-  d.Cases = +d.Cases;
-  if (d.Cases) return d;
+  d.value = +d.value;
+  if (d.value) return d;
 }, function(error, classes) {
   if (error) throw error;
 
   var root = d3.hierarchy({children: classes})
-      .sum(function(d) { return d.Cases; })
+      .sum(function(d) { return d.value; })
       .each(function(d) {
         if (id = d.data.id) {
           var id, i = id.lastIndexOf(".");
@@ -70,5 +70,6 @@ d3.csv("flare.csv", function(d) {
 });
 
 </script>
+
 
 </body></html>
